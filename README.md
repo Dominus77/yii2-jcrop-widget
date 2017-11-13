@@ -28,6 +28,7 @@ Usage
 
 Once the extension is installed, simply use it in your code by  :
 
+Basic:
 ```
 <?php \dominus77\jcrop\JCrop::widget([
     'selector' => '#target',
@@ -40,22 +41,16 @@ Once the extension is installed, simply use it in your code by  :
         'onSelect' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
         'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
     ],
-]);
-
-// Initialize Jcrop
-$script = new \yii\web\JsExpression("
-    initJcrop();
-");
-$this->registerJs($script);
-?>
+]); ?>
 
 <img id="target" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
 ```
-Advanced Options:
+Advanced:
 
 ```
 <?php \dominus77\jcrop\JCrop::widget([
     'selector' => '#target',
+    'initialize' => false, // Disables auto initialization Jcrop (Default true)
     'pluginOptions' => [
         'minSize' => [50, 37],
         'maxSize' => [500, 370],
@@ -71,26 +66,31 @@ Advanced Options:
 
 $script = new \yii\web\JsExpression("
 
+    // Example animate
     $('#animbutton').click(function(e) {
         jcrop_api.animateTo([ 120,120,80,80 ]);
         return false;
     });
 
+    // Example disable Jcrop
     $('#disable').click(function(e) {
         jcrop_api.destroy();
         return false;
     });
 
+    // Example enable Jcrop
     $('#enable').click(function(e) {
         initJcrop();
         return false;
     });
 
+    // Example disable preview
     $('#preview_disable').click(function(e) {
         hidePreview();
         return false;
     });
 
+    // Example of filling a form with coordinates
     function showCoords(c) {
         $('#x').val(c.x);
         $('#y').val(c.y);
@@ -102,8 +102,10 @@ $script = new \yii\web\JsExpression("
 
     var preview = $('#preview');
 
+    // Function of organization preview
     function showPreview(coords) {
 
+        // Fill form fields with coordinates
         showCoords(coords);
 
         if (parseInt(coords.w) > 0) {
@@ -119,11 +121,14 @@ $script = new \yii\web\JsExpression("
         }
     }
 
+    // Hide function preview
     function hidePreview() {
         preview.stop().fadeOut('fast');
     }
 
     hidePreview();
+
+    // Initialization Jcrop
     initJcrop();
 ");
 $this->registerJs($script);

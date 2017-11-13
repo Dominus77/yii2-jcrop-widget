@@ -10,12 +10,35 @@ use yii\helpers\Json;
 /**
  * Class JCrop
  * @package dominus77\jcrop
+ *
+ * Jcrop - Image Cropping for jQuery
+ *
+ * JCrop::widget([
+ *      'selector' => '#target',
+ *      'pluginOptions' => [...], // see http://beta.jcrop.org/doc/options.html
+ * ]);
+ *
  */
 class JCrop extends Widget
 {
+    /**
+     * id image
+     * @var string
+     */
     public $selector;
 
+    /**
+     * Plugin options Jcrop
+     * see http://beta.jcrop.org/doc/options.html
+     * @var array
+     */
     public $pluginOptions = [];
+
+    /**
+     * Auto initialize Jcrop
+     * @var bool
+     */
+    public $initialize = true;
 
     public function init()
     {
@@ -34,9 +57,13 @@ class JCrop extends Widget
     {
         $options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
         $js = new \yii\web\JsExpression("
-            var jcrop_api;
+            var jcrop_api,
+                start = '{$this->initialize}';
             function initJcrop() {
                 $('{$this->selector}').Jcrop({$options}, function(){jcrop_api = this;});
+            }
+            if(start == true) {
+                initJcrop();
             }
         ");
         $view = $this->getView();
