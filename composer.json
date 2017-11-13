@@ -1,0 +1,22 @@
+{
+    "name": "dominus77/yii2-jcrop-widget",
+    "description": "Jcrop Image Cropping Plugin for Yii2.",
+    "type": "yii2-extension",
+    "keywords": ["dominus77","yii2","extension","widget","Jcrop"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Alexey Schevchenko",
+            "email": "ivanovosity@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0",
+        "bower-asset/Jcrop": "~2.0.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "dominus77\\jcrop\\": ""
+        }
+    }
+}
