@@ -1,7 +1,7 @@
 yii2-jcrop-widget
 ======
 
-[Jcrop - Image Cropping for jQuery](http://beta.jcrop.org) for Yii2.
+[Jcrop - Image Cropping for jQuery](http://beta.jcrop.org)
 
 Installation
 ------------
