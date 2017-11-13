@@ -41,6 +41,7 @@ Once the extension is installed, simply use it in your code by  :
     ],
 ]);
 
+// Initialize Jcrop
 $script = new \yii\web\JsExpression("
     initJcrop();
 ");
@@ -101,6 +102,7 @@ $script = new \yii\web\JsExpression("
     var preview = $('#preview');
 
     function showPreview(coords) {
+
         showCoords(coords);
 
         if (parseInt(coords.w) > 0) {
