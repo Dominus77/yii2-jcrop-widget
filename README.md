@@ -61,10 +61,32 @@ Advanced:
         'onChange' => new yii\web\JsExpression("showPreview"),
         'onRelease' => new yii\web\JsExpression("hidePreview"),
         'aspectRatio' => 1,
+        'selectionComponent' => new yii\web\JsExpression("CoordsSel"), // Add title show Width and Height
     ],
 ]);
 
 $script = new \yii\web\JsExpression("
+
+    // Show title Width and Height
+    var CoordsSel = function(){ };
+    CoordsSel.prototype = new $.Jcrop.component.Selection;
+    $.extend(CoordsSel.prototype,{
+          attach: function(){
+            // Prepend an element to Selection.element (selection container)
+            this.coords = $('<div> x </div>').addClass('jcrop-coords');
+            this.element.prepend(this.coords);
+          },
+          redraw: function(b){
+
+            // Call original redraw() method first, with arguments
+            $.Jcrop.component.Selection.prototype.redraw.call(this,b);
+
+            // Update coordinates
+            this.coords.html(this.last.w+' &times '+this.last.h);
+
+            return this;
+          }
+    });
 
     // Example animate
     $('#animbutton').click(function(e) {
@@ -132,6 +154,24 @@ $script = new \yii\web\JsExpression("
     initJcrop();
 ");
 $this->registerJs($script);
+
+// This css to Add title show Width and Height
+$this->registerCss("
+.jcrop-coords {
+    position: absolute;
+    bottom: -24px;
+    right: 7px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 1px 4px 0;
+    font-size: 10px;
+    white-space: nowrap;
+    font-family: \"Lucida Console\", Monaco, monospace;
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+");
 ?>
 
 <div class="row">
