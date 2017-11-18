@@ -26,9 +26,8 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Once the extension is installed, simply use it in your code by:
 
-Basic:
 ```
 <?php \dominus77\jcrop\JCrop::widget([
     'selector' => '#target',
@@ -41,164 +40,35 @@ Basic:
         'onSelect' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
         'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
     ],
-]); ?>
+]);
+?>
 
 <img id="target" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
+<button id="mybutton">Select</button>
 ```
-Advanced:
 
+callBack:
 ```
 <?php \dominus77\jcrop\JCrop::widget([
     'selector' => '#target',
-    'initialize' => false, // Disables auto initialization Jcrop (Default true)
-    'pluginOptions' => [
-        'minSize' => [50, 37],
-        'maxSize' => [500, 370],
-        'setSelect' => [10, 10, 40, 40],
-        'bgColor' => 'black',
-        'bgOpacity' => '0.5',
-        'onSelect' => new yii\web\JsExpression("showPreview"),
-        'onChange' => new yii\web\JsExpression("showPreview"),
-        'onRelease' => new yii\web\JsExpression("hidePreview"),
-        'aspectRatio' => 1,
-        'selectionComponent' => new yii\web\JsExpression("CoordsSel"), // Add title show Width and Height
-    ],
+    'pluginOptions' => [...],
+    'callBack' => "
+        function(){
+            jcrop_api = this;
+            init_interface();
+        }
+    "),
 ]);
 
 $script = new \yii\web\JsExpression("
-
-    // Show title Width and Height
-    var CoordsSel = function(){ };
-    CoordsSel.prototype = new $.Jcrop.component.Selection;
-    $.extend(CoordsSel.prototype,{
-          attach: function(){
-            // Prepend an element to Selection.element (selection container)
-            this.coords = $('<div> x </div>').addClass('jcrop-coords');
-            this.element.prepend(this.coords);
-          },
-          redraw: function(b){
-
-            // Call original redraw() method first, with arguments
-            $.Jcrop.component.Selection.prototype.redraw.call(this,b);
-
-            // Update coordinates
-            this.coords.html(this.last.w+' &times '+this.last.h);
-
-            return this;
-          }
-    });
-
-    // Example animate
-    $('#animbutton').click(function(e) {
-        jcrop_api.animateTo([ 120,120,80,80 ]);
-        return false;
-    });
-
-    // Example disable Jcrop
-    $('#disable').click(function(e) {
-        jcrop_api.destroy();
-        return false;
-    });
-
-    // Example enable Jcrop
-    $('#enable').click(function(e) {
-        initJcrop();
-        return false;
-    });
-
-    // Example disable preview
-    $('#preview_disable').click(function(e) {
-        hidePreview();
-        return false;
-    });
-
-    // Example of filling a form with coordinates
-    function showCoords(c) {
-        $('#x').val(c.x);
-        $('#y').val(c.y);
-        $('#x2').val(c.x2);
-        $('#y2').val(c.y2);
-        $('#w').val(c.w);
-        $('#h').val(c.h);
-    };
-
-    var preview = $('#preview');
-
-    // Function of organization preview
-    function showPreview(coords) {
-
-        // Fill form fields with coordinates
-        showCoords(coords);
-
-        if (parseInt(coords.w) > 0) {
-            var rx = 100 / coords.w;
-            var ry = 100 / coords.h;
-
-            preview.css({
-                width: Math.round(rx * 500) + 'px',
-                height: Math.round(ry * 370) + 'px',
-                marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-                marginTop: '-' + Math.round(ry * coords.y) + 'px'
-            }).show();
-        }
+    function init_interface(){
+        $('#mybutton').on('click',function(e){
+            jcrop_api.setSelect([ 10, 10, 100, 100 ]);
+        });
     }
-
-    // Hide function preview
-    function hidePreview() {
-        preview.stop().fadeOut('fast');
-    }
-
-    hidePreview();
-
-    // Initialization Jcrop
-    initJcrop();
 ");
 $this->registerJs($script);
-
-// This css to Add title show Width and Height
-$this->registerCss("
-.jcrop-coords {
-    position: absolute;
-    bottom: -24px;
-    right: 7px;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 1px 4px 0;
-    font-size: 10px;
-    white-space: nowrap;
-    font-family: \"Lucida Console\", Monaco, monospace;
-    background: rgba(0, 0, 0, 0.8);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-");
 ?>
-
-<div class="row">
-    <div class="col-md-6">
-        <img id="target" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
-        <br>
-        <div class="jc_coords">
-            <label>X1 <input type="text" size="4" id="x" name="x" /></label>
-            <label>Y1 <input type="text" size="4" id="y" name="y" /></label>
-            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-            <label>W <input type="text" size="4" id="w" name="w" /></label>
-            <label>H <input type="text" size="4" id="h" name="h" /></label>
-        </div>
-        <div class="jc_control">
-            <span class="btn btn-success" id="enable">Enable</span>
-            <span class="btn btn-danger" id="disable">Disable</span>
-            <span class="btn btn-primary" id="preview_disable">Disable Preview</span>
-            <span class="btn btn-default" id="animbutton">Animate</span>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div style="width:100px;height:100px;overflow:hidden;margin-left:5px;">
-            <img id="preview" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
-        </div>
-    </div>
-</div>
 ```
 
 More Information

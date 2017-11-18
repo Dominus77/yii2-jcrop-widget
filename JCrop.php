@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Json;
+use yii\web\JsExpression;
 
 /**
  * Class JCrop
@@ -16,6 +17,7 @@ use yii\helpers\Json;
  * JCrop::widget([
  *      'selector' => '#target',
  *      'pluginOptions' => [...], // see http://beta.jcrop.org/doc/options.html
+ *      'callBack' => "function(){}",
  * ]);
  *
  */
@@ -29,16 +31,16 @@ class JCrop extends Widget
 
     /**
      * Plugin options Jcrop
-     * see http://beta.jcrop.org/doc/options.html
+     * @see http://beta.jcrop.org/doc/options.html
      * @var array
      */
     public $pluginOptions = [];
 
     /**
-     * Auto initialize Jcrop
-     * @var bool
+     * @see http://beta.jcrop.org/doc/api.html
+     * @var string
      */
-    public $initialize = true;
+    public $callBack = 'function(){}';
 
     public function init()
     {
@@ -53,18 +55,14 @@ class JCrop extends Widget
         $this->registerClientScript();
     }
 
+    /**
+     * Register Jcrop
+     */
     public function registerClientScript()
     {
         $options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
-        $js = new \yii\web\JsExpression("
-            var jcrop_api,
-                start = '{$this->initialize}';
-            function initJcrop() {
-                $('{$this->selector}').Jcrop({$options}, function(){jcrop_api = this;});
-            }
-            if(start == true) {
-                initJcrop();
-            }
+        $js = new JsExpression("
+            $('{$this->selector}').Jcrop({$options},{$this->callBack});
         ");
         $view = $this->getView();
         JCropAsset::register($view);
