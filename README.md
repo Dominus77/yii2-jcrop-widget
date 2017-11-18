@@ -46,7 +46,7 @@ Once the extension is installed, simply use it in your code by:
 <img id="target" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
 ```
 
-callBack:
+[From the Jcrop jQuery plugin "loaded" callback](http://beta.jcrop.org/doc/api.html)
 ```
 <?php \dominus77\jcrop\JCrop::widget([
     'selector' => '#target',
