@@ -1,10 +1,12 @@
-yii2-jcrop-widget
-======
+# yii2-jcrop-widget
+
+[![Latest Stable Version](https://poser.pugx.org/dominus77/yii2-jcrop-widget/v/stable)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
+[![License](https://poser.pugx.org/dominus77/yii2-jcrop-widget/license)](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md)
+[![Total Downloads](https://poser.pugx.org/dominus77/yii2-jcrop-widget/downloads)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
 
 [Jcrop - Image Cropping for jQuery](http://beta.jcrop.org)
 
-Installation
-------------
+## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -22,9 +24,7 @@ or add
 
 to the require section of your `composer.json` file.
 
-
-Usage
------
+## Usage
 
 Once the extension is installed, simply use it in your code by:
 
@@ -70,10 +70,8 @@ $this->registerJs($script);
 ?>
 ```
 
-More Information
------
+## More Information
 Please, check the [Jcrop - Image Cropping for jQuery](http://beta.jcrop.org)
 
-License
------
+## License
 The BSD License (BSD). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.

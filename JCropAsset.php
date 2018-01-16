@@ -10,12 +10,24 @@ use yii\web\AssetBundle;
  */
 class JCropAsset extends AssetBundle
 {
+    /**
+     * @var string
+     */
     public $sourcePath = '@bower/jcrop';
 
-    public $css;
+    /**
+     * @var array
+     */
+    public $css = [];
 
-    public $js;
+    /**
+     * @var array
+     */
+    public $js = [];
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
@@ -28,6 +40,9 @@ class JCropAsset extends AssetBundle
         ];
     }
 
+    /**
+     * @var array
+     */
     public $depends = [
         'yii\web\JqueryAsset',
     ];

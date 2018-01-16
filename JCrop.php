@@ -42,6 +42,9 @@ class JCrop extends Widget
      */
     public $callBack = 'function(){}';
 
+    /**
+     * @throws InvalidConfigException
+     */
     public function init()
     {
         parent::init();
@@ -50,6 +53,9 @@ class JCrop extends Widget
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         $this->registerClientScript();
