@@ -35,6 +35,11 @@ class JCrop extends Widget
     public $image;
 
     /**
+     * @var array
+     */
+    public $imageOptions = [];
+
+    /**
      * Plugin options Jcrop
      * @see http://jcrop.org/doc/options
      * @var array
@@ -65,7 +70,8 @@ class JCrop extends Widget
     {
         if (!empty($this->image)) {
             $this->registerClientScript();
-            echo Html::img($this->image, ['id' => $this->selector]);
+            $this->imageOptions['id'] = $this->selector;
+            echo Html::img($this->image, $this->imageOptions);
         }
     }
 
