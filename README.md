@@ -42,7 +42,7 @@ Set Options:
         'maxSize' => [500, 370],
         'setSelect' => [10, 10, 40, 40],
         'bgColor' => 'black',
-        'bgOpacity' => '0.5',
+        'bgOpacity' => 0.5,
         'onSelect' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
         'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
     ],
