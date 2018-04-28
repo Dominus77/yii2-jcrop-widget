@@ -28,14 +28,14 @@ to the require section of your `composer.json` file.
 
 Once the extension is installed, simply use it in your code by mimimum run:
 ```
-<?php \dominus77\jcrop\JCrop::widget([
+<?= \dominus77\jcrop\JCrop::widget([
     'image' => Yii::getAlias('@web/uploads/image1.jpg'), // url to your image   
 ]); ?>
 
 ```
 Set Options:
 ```
-<?php \dominus77\jcrop\JCrop::widget([
+<?= \dominus77\jcrop\JCrop::widget([
     'image' => Yii::getAlias('@web/uploads/image1.jpg'),
     'pluginOptions' => [
         'minSize' => [50, 37],
@@ -50,7 +50,7 @@ Set Options:
 ```
 CallBack:
 ```
-<?php \dominus77\jcrop\JCrop::widget([
+<?= \dominus77\jcrop\JCrop::widget([
     'image' => Yii::getAlias('@web/uploads/image1.jpg'),
     'pluginOptions' => [//...],
     'callBack' => new yii\web\JsExpression("
