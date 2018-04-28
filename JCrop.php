@@ -54,7 +54,7 @@ class JCrop extends Widget
     {
         parent::init();
         if (empty($this->selector)) {
-            $this->selector = '#' . $this->id;
+            $this->selector = $this->id;
         }
     }
 
@@ -65,7 +65,7 @@ class JCrop extends Widget
     {
         if (!empty($this->image)) {
             $this->registerClientScript();
-            echo Html::img($this->image, ['id' => $this->id]);
+            echo Html::img($this->image, ['id' => $this->selector]);
         }
     }
 
@@ -77,8 +77,9 @@ class JCrop extends Widget
         $options = empty($this->pluginOptions) ? '{}' : Json::encode($this->pluginOptions);
         $view = $this->getView();
         JCropAsset::register($view);
+        $selector = '#' . $this->selector;
         $js = new JsExpression("          
-            $('{$this->selector}').Jcrop({$options},{$this->callBack});
+            $('{$selector}').Jcrop({$options},{$this->callBack});
         ");
         $view->registerJs($js);
     }
