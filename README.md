@@ -4,7 +4,7 @@
 [![License](https://poser.pugx.org/dominus77/yii2-jcrop-widget/license)](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md)
 [![Total Downloads](https://poser.pugx.org/dominus77/yii2-jcrop-widget/downloads)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
 
-[Jcrop - Image Cropping for jQuery](http://beta.jcrop.org)
+[Jcrop - Image Cropping for jQuery](http://jcrop.org)
 
 ## Installation
 
@@ -13,24 +13,30 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require dominus77/yii2-jcrop-widget "*"
+php composer.phar require dominus77/yii2-jcrop-widget "~2.1"
 ```
 
 or add
 
 ```
-"dominus77/yii2-jcrop-widget": "*"
+"dominus77/yii2-jcrop-widget": "~2.1"
 ```
 
 to the require section of your `composer.json` file.
 
 ## Usage
 
-Once the extension is installed, simply use it in your code by:
-
+Once the extension is installed, simply use it in your code by mimimum run:
 ```
 <?php \dominus77\jcrop\JCrop::widget([
-    'selector' => '#target',
+    'image' => Yii::getAlias('@web/uploads/image1.jpg'), // url to your image   
+]); ?>
+
+```
+Set Options:
+```
+<?php \dominus77\jcrop\JCrop::widget([
+    'image' => Yii::getAlias('@web/uploads/image1.jpg'),
     'pluginOptions' => [
         'minSize' => [50, 37],
         'maxSize' => [500, 370],
@@ -40,38 +46,24 @@ Once the extension is installed, simply use it in your code by:
         'onSelect' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
         'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
     ],
-]);
-?>
-
-<img id="target" src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg">
+]); ?>
 ```
-
-[From the Jcrop jQuery plugin "loaded" callback](http://beta.jcrop.org/doc/api.html)
+CallBack:
 ```
 <?php \dominus77\jcrop\JCrop::widget([
-    'selector' => '#target',
-    'pluginOptions' => [...],
-    'callBack' => "
+    'image' => Yii::getAlias('@web/uploads/image1.jpg'),
+    'pluginOptions' => [//...],
+    'callBack' => new yii\web\JsExpression("
         function(){
             jcrop_api = this;
-            init_interface();
         }
     "),
-]);
+]); ?>
 
-$script = new \yii\web\JsExpression("
-    function init_interface(){
-        $('#mybutton').on('click',function(e){
-            jcrop_api.setSelect([ 10, 10, 100, 100 ]);
-        });
-    }
-");
-$this->registerJs($script);
-?>
 ```
 
 ## More Information
-Please, check the [Jcrop - Image Cropping for jQuery](http://beta.jcrop.org)
+Please, check the [Documentation](http://jcrop.org/doc/options)
 
 ## License
 The BSD License (BSD). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.

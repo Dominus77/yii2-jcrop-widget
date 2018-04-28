@@ -2,23 +2,23 @@
 
 namespace dominus77\jcrop;
 
-use Yii;
 use yii\base\Widget;
-use yii\base\InvalidConfigException;
 use yii\helpers\Json;
+use yii\helpers\Html;
 use yii\web\JsExpression;
 
 /**
  * Class JCrop
  * @package dominus77\jcrop
  *
- * Jcrop - Image Cropping for jQuery
+ * Jcrop is a powerful image cropping tool for jQuery.
+ * @see http://jcrop.org/
  *
- * JCrop::widget([
- *      'selector' => '#target',
- *      'pluginOptions' => [...], // see http://beta.jcrop.org/doc/options.html
+ * <?= \dominus77\jcrop\JCrop::widget([
+ *      'image' => Yii::getAlias('@web/uploads/jcrop/image1.jpg'),
+ *      'pluginOptions' => [...], // see http://jcrop.org/doc/options
  *      'callBack' => "function(){}",
- * ]);
+ * ]); ?>
  *
  */
 class JCrop extends Widget
@@ -30,26 +30,31 @@ class JCrop extends Widget
     public $selector;
 
     /**
+     * @var string
+     */
+    public $image;
+
+    /**
      * Plugin options Jcrop
-     * @see http://beta.jcrop.org/doc/options.html
+     * @see http://jcrop.org/doc/options
      * @var array
      */
     public $pluginOptions = [];
 
     /**
-     * @see http://beta.jcrop.org/doc/api.html
+     * @see http://jcrop.org/doc/api
      * @var string
      */
     public $callBack = 'function(){}';
 
     /**
-     * @throws InvalidConfigException
+     * @inheritdoc
      */
     public function init()
     {
         parent::init();
         if (empty($this->selector)) {
-            throw new InvalidConfigException('The "selector" property must be set.');
+            $this->selector = '#' . $this->id;
         }
     }
 
@@ -58,20 +63,23 @@ class JCrop extends Widget
      */
     public function run()
     {
-        $this->registerClientScript();
+        if (!empty($this->image)) {
+            $this->registerClientScript();
+            echo Html::img($this->image, ['id' => $this->id]);
+        }
     }
 
     /**
-     * Register Jcrop
+     * Register resource
      */
     public function registerClientScript()
     {
-        $options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
-        $js = new JsExpression("
-            $('{$this->selector}').Jcrop({$options},{$this->callBack});
-        ");
+        $options = empty($this->pluginOptions) ? '{}' : Json::encode($this->pluginOptions);
         $view = $this->getView();
         JCropAsset::register($view);
+        $js = new JsExpression("          
+            $('{$this->selector}').Jcrop({$options},{$this->callBack});
+        ");
         $view->registerJs($js);
     }
 }
