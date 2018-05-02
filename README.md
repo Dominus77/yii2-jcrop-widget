@@ -66,4 +66,4 @@ CallBack:
 Please, check the [Documentation](http://jcrop.org/doc/options)
 
 ## License
-The BSD License (BSD). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.
