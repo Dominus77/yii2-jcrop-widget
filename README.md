@@ -63,7 +63,7 @@ CallBack:
 ```
 
 ## More Information
-Please, check the [Documentation](http://jcrop.org/doc/options)
+Please, check the [Manual](http://deepliquid.com/content/Jcrop_Manual.html)
 
 ## License
 The MIT License (MIT). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.
