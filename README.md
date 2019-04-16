@@ -4,7 +4,7 @@
 [![License](https://poser.pugx.org/dominus77/yii2-jcrop-widget/license)](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md)
 [![Total Downloads](https://poser.pugx.org/dominus77/yii2-jcrop-widget/downloads)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
 
-[Jcrop - Image Cropping for jQuery](http://jcrop.org)
+[Jcrop - Image Cropping for jQuery](http://deepliquid.com/content/Jcrop.html)
 
 ## Installation
 
