@@ -2,6 +2,7 @@
 
 namespace dominus77\jcrop;
 
+use yii\web\JqueryAsset;
 use yii\web\AssetBundle;
 
 /**
@@ -44,6 +45,6 @@ class JCropAsset extends AssetBundle
      * @var array
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        JqueryAsset::class,
     ];
 }

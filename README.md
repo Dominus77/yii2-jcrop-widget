@@ -29,8 +29,8 @@ to the require section of your `composer.json` file.
 Once the extension is installed, simply use it in your code by mimimum run:
 ```
 <?= \dominus77\jcrop\JCrop::widget([
-    'image' => Yii::getAlias('@web/uploads/image1.jpg'), // url to your image   
-]); ?>
+    'image' => Yii::getAlias('@web/uploads/image1.jpg') // url to your image   
+]) ?>
 
 ```
 Set Options:
@@ -44,9 +44,9 @@ Set Options:
         'bgColor' => 'black',
         'bgOpacity' => 0.5,
         'onSelect' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
-        'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}"),
-    ],
-]); ?>
+        'onChange' => new yii\web\JsExpression("function(c){console.log(c.x);}")
+    ]
+]) ?>
 ```
 CallBack:
 ```
@@ -57,13 +57,18 @@ CallBack:
         function(){
             jcrop_api = this;
         }
-    "),
-]); ?>
+    ")
+]) ?>
 
 ```
 
 ## More Information
 Please, check the [Manual](http://deepliquid.com/content/Jcrop_Manual.html)
+
+## Testing
+```
+$ vendor/bin/phpunit
+```
 
 ## License
 The MIT License (MIT). Please see [License File](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md) for more information.
