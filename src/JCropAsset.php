@@ -15,12 +15,10 @@ class JCropAsset extends AssetBundle
      * @var string
      */
     public $sourcePath = '@bower/jcrop';
-
     /**
      * @var array
      */
     public $css = [];
-
     /**
      * @var array
      */
