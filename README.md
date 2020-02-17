@@ -13,13 +13,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require dominus77/yii2-jcrop-widget "~2.1"
+php composer.phar require dominus77/yii2-jcrop-widget
 ```
 
 or add
 
 ```
-"dominus77/yii2-jcrop-widget": "~2.1"
+"dominus77/yii2-jcrop-widget": "^2.1"
 ```
 
 to the require section of your `composer.json` file.
