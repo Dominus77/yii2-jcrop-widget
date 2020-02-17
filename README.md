@@ -1,7 +1,10 @@
 # yii2-jcrop-widget
 
-[![Latest Stable Version](https://poser.pugx.org/dominus77/yii2-jcrop-widget/v/stable)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
-[![License](https://poser.pugx.org/dominus77/yii2-jcrop-widget/license)](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md)
+[![Latest Version](https://poser.pugx.org/dominus77/yii2-jcrop-widget/v/stable)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
+[![Software License](https://poser.pugx.org/dominus77/yii2-jcrop-widget/license)](https://github.com/Dominus77/yii2-jcrop-widget/blob/master/LICENSE.md)
+[![Build Status](https://travis-ci.org/Dominus77/yii2-jcrop-widget.svg?branch=master)](https://travis-ci.org/Dominus77/yii2-jcrop-widget)
+[![codecov](https://codecov.io/gh/Dominus77/yii2-jcrop-widget/branch/master/graph/badge.svg)](https://codecov.io/gh/Dominus77/yii2-jcrop-widget)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Dominus77/yii2-jcrop-widget/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Dominus77/yii2-jcrop-widget/?branch=master)
 [![Total Downloads](https://poser.pugx.org/dominus77/yii2-jcrop-widget/downloads)](https://packagist.org/packages/dominus77/yii2-jcrop-widget)
 
 [Jcrop - Image Cropping for jQuery](http://deepliquid.com/content/Jcrop.html)
