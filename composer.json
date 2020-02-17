@@ -2,7 +2,7 @@
     "name": "dominus77/yii2-jcrop-widget",
     "description": "Jcrop Image Cropping Plugin for Yii2.",
     "type": "yii2-extension",
-    "keywords": ["dominus77","yii2","extension","widget","Jcrop"],
+    "keywords": ["dominus77","yii2","extension","widget","Jcrop","jcrop"],
     "license": "MIT",
     "authors": [
         {
@@ -26,7 +26,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "dominus77\\jcrop\\": ""
+            "dominus77\\jcrop\\": "src"
         }
     }
 }
